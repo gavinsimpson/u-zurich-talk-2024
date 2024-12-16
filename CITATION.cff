@@ -1,0 +1,33 @@
+title: "Avoiding linearity"
+authors:
+  - family-names: Simpson
+    given-names: Gavin
+    orcid: "https://orcid.org/0000-0002-9084-8413"
+cff-version: 1.2.0
+contact:
+  - affiliation: "Department of Animal and Veterinary Science, Aarhus University"
+    email: "ucfagls@gmail.com"
+    family-names: Simpson
+    given-names: Gavin
+date-released: "2024-12-17"
+doi: "10.5281/zenodo.8007293"
+version: "1.0"
+keywords:
+  - "phenology"
+  - "time series"
+  - "generalised additive models"
+  - "trends"
+  - "penalized splines"
+  - "biodiversity"
+  - "ecology"
+license: "CC-BY-4.0"
+license-url: "https://creativecommons.org/licenses/by/4.0/legalcode"
+message: "If you use or reuse this presentation please cite it using 'preferred.citation'"
+preferred-citation:
+  authors:
+    - family-names: Simpson
+      given-names: "Gavin L."
+  title: "Avoiding linearity. Universität Zurich Seminar. Zurich, Switzerland, December 17, 2024"
+  type: generic
+  year: 2024
+  doi: "10.5281/zenodo.8007293"
