@@ -1050,7 +1050,7 @@ fv |>
 
 ---
 
-# How has timing of peak incidence changed?
+# Has timing of peak incidence changed?
 
 Easy &mdash; using data in previous figure, find week in each year where $\widehat{\texttt{cases}}_{ij}$ is maximal
 
@@ -1064,7 +1064,7 @@ GAMs are an *empirical Bayesian* model so we can simulate from the posterior dis
 
 ---
 
-# How has timing of peak incidence changed?
+# Timing of peak incidence
 
 *gratia* 📦 has functions to make doing this easy(-ish)
 
@@ -1093,7 +1093,7 @@ peak_week <- fs2 |>
 
 ---
 
-# How has timing of peak changed?
+# Has timing of peak incidence changed?
 
 ```{r lyme-plot-peak-week, cache = TRUE, out.width = "95%", fig.align = "center", dependson = -1}
 peak_week |>
