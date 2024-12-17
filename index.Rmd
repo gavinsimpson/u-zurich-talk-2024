@@ -522,7 +522,7 @@ $\boldsymbol{\beta}^{\mathsf{T}}\mathbf{S}\boldsymbol{\beta}$ measures **wigglin
 We use a **smoothing parameter** $\lambda$ to define the trade-off, to find
 the spline coefficients $b_k$ that maximize the **penalized** log-likelihood
 
-$$\mathcal{L}_p = \log(\text{Likelihood})  - \lambda \boldsymbol{\beta}^{\mathsf{T}}\mathbf{S}\boldsymbol{\beta}$$
+$$\mathcal{L}_p = \mathcal{L}  - \frac{1}{2} \lambda \boldsymbol{\beta}^{\mathsf{T}}\mathbf{S}\boldsymbol{\beta}$$
 
 ---
 
@@ -552,11 +552,6 @@ options(op)
 class: inverse subsection center middle
 
 # Examples
-
----
-class: inverse subsection center middle
-
-# Trends
 
 ---
 
@@ -805,18 +800,18 @@ Regional smooths of `year`, year-to-year effects, `site` specific *random* smoot
 
 # Results
 
-* Model A (without Y2Y effects): AIC 15122 (255.7 EDF)
-* Model B (with Y2Y effects): AIC 15123 (254.2 EDF)
-* Equivalent mixed linear trend model (with Y2Y effects): AIC 15468 (111.8 EDF)
+* Model A (without Y2Y effects): AIC **15122** (255.7 EDF)
+* Model B (with Y2Y effects): AIC **15123** (254.2 EDF)
+* Equivalent mixed linear trend model (with Y2Y effects): AIC **15468** (111.8 EDF)
 
 Use year-to-year effects or not?
 
 --
 
-(For these data) **A** and **B** are different ways to decompose the temporal effects
+**A** and **B** are different ways to decompose the temporal effects
 
-* Without Y2Y &#8594;	wigglier regional smooths
-* With Y2Y &#8594; less wiggly regional smooths
+* Without `year` ranefs (no Y2Y) &#8594;	wigglier regional smooths
+* With `year ranefs (Y2Y) &#8594; less wiggly regional smooths
 
 ???
 
@@ -998,7 +993,7 @@ $$
 f(\texttt{week}_i , \texttt{year}_i)
 $$
 
-is a tensor product smooth (main effects plus interaction)
+is a multivariate smooth (main effects plus interaction)
 
 ---
 
@@ -1008,9 +1003,9 @@ Model code looks like:
 
 ```{r lyme-gam-code, echo = TRUE, cache = TRUE}
 m <- bam(cases ~ s(week, bs = "cc", k = 20) +
-          s(year, k = 25) +
-          ti(week, year, bs = c("cc", "tp"), k = c(20, 20)) +
-          offset(log(pop)),
+           s(year, k = 25) +
+           ti(week, year, bs = c("cc", "tp"), k = c(20, 20)) +
+           offset(log(pop)),
     data = lyme,
     family = nb(),
     method = "fREML",
@@ -1055,7 +1050,7 @@ fv |>
 
 ---
 
-# How has timing of peak changed?
+# How has timing of peak incidence changed?
 
 Easy &mdash; using data in previous figure, find week in each year where $\widehat{\texttt{cases}}_{ij}$ is maximal
 
@@ -1069,7 +1064,7 @@ GAMs are an *empirical Bayesian* model so we can simulate from the posterior dis
 
 ---
 
-# How has timing of peak changed?
+# How has timing of peak incidence changed?
 
 *gratia* 📦 has functions to make doing this easy(-ish)
 
@@ -1124,6 +1119,18 @@ Can be adapted in many ways
 * handle very large data
 
 Posterior inference allows us to do many useful things (easily &mdash; more easily)
+
+---
+
+# One trick pony?
+
+GAMs are useful for more than just trend estimation
+
+* response surfaces
+* varying-coefficient models
+* lagged-effects of covarites on $y_i$
+* signal regression
+
 
 ---
 
